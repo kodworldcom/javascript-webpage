@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Javascript Webpage</title>
+  </head>
+  <body>
+    <script>
+      const body = document.body;
+      body.style.margin = "0";
+      body.style.padding = "0";
+      body.style.boxSizing = "border-box";
+      body.style.backgroundColor = "#f4f4f4";
+      body.style.color = "#333";
+
+      const header = document.createElement("header");
+      header.style.backgroundColor = "#4CAF50";
+      header.style.padding = "20px";
+      header.style.textAlign = "center";
+
+      const headerTitle = document.createElement("h1");
+      headerTitle.textContent = "My JavaScript Webpage";
+      headerTitle.style.color = "#fff";
+      headerTitle.style.margin = "0";
+      header.appendChild(headerTitle);
+
+      body.appendChild(header);
+
+      const main = document.createElement("main");
+      main.style.padding = "20px";
+
+      const content = document.createElement("p");
+      content.textContent = `This webppage is entirely created and styled by JavaScript. 
+      No HTML or CSS codes were used!`;
+
+      content.style.fontSize = "18px";
+      content.style.lineHeight = "1.6";
+      main.appendChild(content);
+
+      const counterSection = document.createElement("section");
+      counterSection.style.margin = "20px 0";
+
+      const counterTitle = document.createElement("h2");
+      counterTitle.textContent = "Interactive Counter";
+      counterTitle.style.fontSize = "24px";
+      counterTitle.style.marginBottom = "10px";
+      counterSection.appendChild(counterTitle);
+
+      const counterValue = document.createElement("span");
+      counterValue.textContent = "0";
+      counterValue.style.display = "block";
+      counterValue.style.fontSize = "36px";
+      counterValue.style.marginBottom = "10px";
+      counterSection.appendChild(counterValue);
+
+      const incrementButton = document.createElement("button");
+      incrementButton.textContent = "Increment";
+      incrementButton.style.padding = "10px 20px";
+      incrementButton.style.fontSize = "16px";
+      incrementButton.style.cursor = "pointer";
+      incrementButton.style.marginRight = "10px";
+      incrementButton.style.backgroundColor = "#4caf50";
+      incrementButton.style.color = "#fff";
+      incrementButton.style.border = "none";
+      incrementButton.style.borderRadius = "5px";
+
+      const decrementButton = document.createElement("button");
+      decrementButton.textContent = "Decrement";
+      decrementButton.style.padding = "10px 20px";
+      decrementButton.style.fontSize = "16px";
+      decrementButton.style.cursor = "pointer";
+      decrementButton.style.backgroundColor = "#ff5722";
+      decrementButton.style.color = "#fff";
+      decrementButton.style.border = "none";
+      decrementButton.style.borderRadius = "5px";
+
+      incrementButton.addEventListener("click", () => {
+        counterValue.textContent = parseInt(counterValue.textContent) + 1;
+      });
+
+      decrementButton.addEventListener("click", () => {
+        counterValue.textContent = parseInt(counterValue.textContent) - 1;
+      });
+
+      counterSection.appendChild(incrementButton);
+      counterSection.appendChild(decrementButton);
+      main.appendChild(counterSection);
+
+      const listSection = document.createElement("section");
+      listSection.style.margin = "20px 0";
+
+      const listTitle = document.createElement("h2");
+      listTitle.textContent = "Add Items to a List";
+
+      listTitle.style.fontSize = "24px";
+      listTitle.style.marginBottom = "10px";
+      listSection.appendChild(listTitle);
+
+      const listInput = document.createElement("input");
+      listInput.type = "text";
+      listInput.placeholder = "Enter an item";
+      listInput.style.padding = "10px";
+      listInput.style.fontSize = "16px";
+      listInput.style.marginRight = "10px";
+      listSection.appendChild(listInput);
+
+      const addItemButton = document.createElement("button");
+      addItemButton.textContent = "Add Item";
+      addItemButton.style.padding = "10px 20px";
+      addItemButton.style.fontSize = "16px";
+      addItemButton.style.cursor = "pointer";
+      addItemButton.style.backgroundColor = "#2196f3";
+      addItemButton.style.color = "#fff";
+      addItemButton.style.border = "none";
+      addItemButton.style.borderRadius = "5px";
+
+      const itemList = document.createElement("ul");
+      itemList.style.marginTop = "20px";
+      itemList.style.listStyleType = "none";
+      itemList.style.padding = "0";
+
+      addItemButton.addEventListener("click", () => {
+        const itemText = listInput.value.trim();
+        if (itemText !== "") {
+          const listItem = document.createElement("li");
+          listItem.style.fontSize = "18px";
+          listItem.style.marginBottom = "10px";
+          listItem.style.display = "flex";
+          listItem.style.alignItems = "center";
+
+          const itemTextNode = document.createElement("span");
+          itemTextNode.textContent = itemText;
+          listItem.appendChild(itemTextNode);
+
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "Delete";
+          deleteButton.style.padding = "5px 10px";
+          deleteButton.style.fontSize = "14px";
+          deleteButton.style.cursor = "pointer";
+          deleteButton.style.backgroundColor = "#ff5722";
+          deleteButton.style.color = "#fff";
+          deleteButton.style.border = "none";
+          deleteButton.style.borderRadius = "5px";
+          deleteButton.style.marginLeft = "10px";
+
+          deleteButton.addEventListener("click", () => {
+            itemList.removeChild(listItem);
+          });
+
+          listItem.appendChild(deleteButton);
+          itemList.appendChild(listItem);
+          listInput.value = "";
+        }
+      });
+
+      listSection.appendChild(addItemButton);
+      listSection.appendChild(itemList);
+      main.appendChild(listSection);
+
+      const colorPickerSection = document.createElement("section");
+      colorPickerSection.style.margin = "20px 0";
+
+      const colorPickerTitle = document.createElement("h2");
+      colorPickerTitle.textContent = "Change Background Color";
+      colorPickerTitle.style.fontSize = "24px";
+      colorPickerTitle.style.marginBottom = "10px";
+
+      colorPickerSection.appendChild(colorPickerTitle);
+
+      const colorInput = document.createElement("input");
+      colorInput.type = "color";
+      colorInput.style.padding = "10px";
+      colorInput.style.fontSize = "16px";
+      colorInput.style.cursor = "pointer";
+      colorInput.style.marginRight = "10px";
+      colorPickerSection.appendChild(colorInput);
+
+      const applyColorButton = document.createElement("button");
+      applyColorButton.textContent = "Apply Color";
+      applyColorButton.style.padding = "10px 20px";
+      applyColorButton.style.fontSize = "16px";
+      applyColorButton.style.cursor = "pointer";
+      applyColorButton.style.backgroundColor = "#673ab7";
+      applyColorButton.style.color = "#fff";
+      applyColorButton.style.border = "none";
+      applyColorButton.style.borderRadius = "5px";
+
+      applyColorButton.addEventListener("click", () => {
+        body.style.backgroundColor = colorInput.value;
+      });
+
+      colorPickerSection.appendChild(applyColorButton);
+      main.appendChild(colorPickerSection);
+
+      const clockSection = document.createElement("section");
+      clockSection.style.margin = "20px 0";
+
+      const clockTitle = document.createElement("h2");
+      clockTitle.textContent = "Current Time";
+      clockTitle.style.fontSize = "24px";
+      clockTitle.style.marginBottom = "10px";
+      clockSection.appendChild(clockTitle);
+
+      const clockDisplay = document.createElement("div");
+      clockDisplay.style.fontSize = "36px";
+      clockDisplay.style.marginBottom = "10px";
+      clockSection.appendChild(clockDisplay);
+
+      function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+        clockDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+      }
+
+      setInterval(updateClock, 1000);
+      updateClock();
+
+      main.appendChild(clockSection);
+      body.appendChild(main);
+
+      const footer = document.createElement("footer");
+      footer.style.backgroundColor = "#333";
+      footer.style.color = "#fff";
+      footer.style.padding = "10px";
+      footer.style.textAlign = "center";
+      footer.style.position = "fixed";
+      footer.style.width = "100%";
+      footer.style.bottom = "0";
+
+      const footerText = document.createElement("p");
+      footerText.textContent = "2024 My JavaScript Webpage";
+      footerText.style.margin = "0";
+      footer.appendChild(footerText);
+
+      body.appendChild(footer);
+    </script>
+  </body>
+</html>
